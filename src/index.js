@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import SERVER_URL from './constants/server-url';
 import Search from './components/search/search';
-import Fetch from './components/fetch/fetch';
+import fetch from './utils/fetch';
 import List from './components/list/list';
 import ListItem from './components/listitem/listitem';
 
@@ -12,25 +12,31 @@ const init = async () => {
 
 init();
 
-let fetch = null;
 let list = null;
 
 function onChaynsReady() {
     let search = new Search(document.querySelector('#search'), onSearch);
 
-    fetch = new Fetch;
     list = new List(document.querySelector('#siteDisplay'));
 };
 
 function onSearch(searchString) {
     console.log(searchString);
-    fetch.run('https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=love&Skip=0&Take=10', onJsonLoad);
+    
+    if (searchString != '')
+        fetch('https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=' + searchString + '&Skip=' + 0 + '&Take=' + 10, onJsonLoad);
+
+    else
+        list.clear();
 };
 
 function onJsonLoad(jsonObjects) {
+    list.clear();
+
     for (let i = 0; i < jsonObjects.length; i++) {
-        console.log(jsonObjects[i]); // DEBUG
-        list.add(new ListItem(jsonObjects[i].appstoreName, jsonObjects[i].siteId, 'https://tapp01.tobit.com/content/design/Designguide/chayns_design_guide/chayns_icon.png', ''));
+        let $siteItem = new ListItem(jsonObjects[i].appstoreName, jsonObjects[i].siteId, 'https://sub60.tobit.com/l/' + jsonObjects[i].siteId + '?size=45', 'https://chayns.net/' + jsonObjects[i].siteId + '/');
+
+        list.add($siteItem.getHTML());
     }
 
     list.print();

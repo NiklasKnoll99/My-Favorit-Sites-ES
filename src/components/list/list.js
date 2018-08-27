@@ -1,19 +1,24 @@
 export default class List {
-    listItems = null;
+    $listItems = null;
     $display = null;
 
     constructor($display) {
-        this.listItems = [];
+        this.$listItems = [];
         this.$display = $display;
     };
 
-    add(listItem) {
-        this.listItems.push(listItem);
+    add($listItem) {
+        this.$listItems.push($listItem);
     };
 
     print() {
-        for (let i = 0; i < this.listItems.length; i++) {
-            this.$display.appendChild(this.listItems[i].getHTML());
+        for (let i = 0; i < this.$listItems.length; i++) {
+            this.$display.appendChild(this.$listItems[i]);
         }
+    };
+
+    clear() {
+        this.$display.innerHTML = '';
+        this.$listItems = [];
     };
 }
