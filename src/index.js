@@ -5,6 +5,7 @@ import fetch from './utils/fetch';
 import List from './components/list/list';
 import ListItem from './components/listitem/listitem';
 import setLoadMoreCb from './utils/setloadmorecb';
+import checkInputs from './utils/checkInputs';
 
 const init = async () => {
     await chayns.ready;
