@@ -42,10 +42,10 @@ export default class List {
     };
 
     onJsonLoad(jsonObjects) {
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < jsonObjects.length; i++) {
             let siteElement = new ListItem(jsonObjects[i].appstoreName, jsonObjects[i].siteId, 'https://sub60.tobit.com/l/' + jsonObjects[i].siteId + '?size=45');
-            //this.listItems.push(siteElement);
-            this.siteDisplay.appendChild(siteElement.getElement());
+            this.listItems.push(siteElement);
+            this.siteDisplay.appendChild(this.listItems[i].getElement());
         }
     };
 }

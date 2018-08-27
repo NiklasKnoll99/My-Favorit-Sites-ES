@@ -17,7 +17,7 @@ export default class Search {
             if (response.ok)
                 return response.json();
         }).then((json) => {
-            this.onJsonLoadCallback(json.Data)
+            this.onJsonLoadCallback(json.Data);
         });
     };
 }
