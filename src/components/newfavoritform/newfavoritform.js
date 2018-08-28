@@ -1,6 +1,7 @@
 import htmlToElement from 'html-to-element';
 
 export default class NewFavoritForm {
+    $html = null;
     $name = null;
     $facebookpage = null;
     $address = null;
@@ -8,26 +9,28 @@ export default class NewFavoritForm {
     $sendBtn = null;
 
     create($parent) {
-        $parent.appendChild(htmlToElement(`
-        <div class="accordion">
-            <div class="accordion__head">Neuen Favoriten hinzufügen</div>
-            <div class="accordion__body">
-                <!--<div class="accordion__intro"></div>-->
-                <div class="accordion__content">
-                    <input id="name" style="width: 100%; height: 34px" class="input" placeholder="Name" type="text" value>
-                    <input id="facebookpage" style="width: 100%; height: 34px" class="input" placeholder="Facebook-Seite" type="text" value>
-                    <input id="address" style="width: 100%; height: 34px" class="input" placeholder="Adresse" type="text" value>
-                    <input id="email" style="width: 100%; height: 34px" class="input" placeholder="E-Mail" type="text" value><br>
-                    <textarea id="comment" style="width: 100%" class="input" placeholder="Kommentar" type="text" autogrow value></textarea>
-                    <br><br>
+        this.$html = htmlToElement(`
+            <div class="accordion">
+                <div class="accordion__head">Neuen Favoriten hinzufügen</div>
+                <div class="accordion__body">
+                    <!--<div class="accordion__intro"></div>-->
+                    <div class="accordion__content">
+                        <input id="name" style="width: 100%; height: 34px" class="input" placeholder="Name" type="text" value>
+                        <input id="facebookpage" style="width: 100%; height: 34px" class="input" placeholder="Facebook-Seite" type="text" value>
+                        <input id="address" style="width: 100%; height: 34px" class="input" placeholder="Adresse" type="text" value>
+                        <input id="email" style="width: 100%; height: 34px" class="input" placeholder="E-Mail" type="text" value><br>
+                        <textarea id="comment" style="width: 100%" class="input" placeholder="Kommentar" type="text" autogrow value></textarea>
+                        <br><br>
 
-                    <div style="text-align: center">
-                        <button id="sendFavoritData" class="button">Abschicken</button>
+                        <div style="text-align: center">
+                            <button id="sendFavoritData" class="button">Abschicken</button>
+                        </div>
+                        <br>
                     </div>
-                    <br>
                 </div>
-            </div>
-        </div>`));
+            </div>`);
+
+        $parent.appendChild(this.$html);
 
         this.$name = document.querySelector('#name');
         this.$facebookpage = document.querySelector('#facebookpage');
@@ -84,4 +87,8 @@ export default class NewFavoritForm {
 
         return true;
     }
+
+    getHTML() {
+        return this.$html;
+    };
 }

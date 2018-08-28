@@ -29,7 +29,8 @@ function onChaynsReady() {
     displayForm = new DisplayForm;
     displayForm.create(document.querySelector('.tapp__content'));
 
-    let search = new Search(document.querySelector('#search'), onSearch);
+    let search = new Search;
+    search.create(displayForm.getHTML().querySelector('.accordion__head'), onSearch);
 
     setLoadMoreCb(document.querySelector('#loadMore'), onLoadMoreClick);
 };
