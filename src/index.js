@@ -23,16 +23,18 @@ let skip = 0;
 let take = 10;
 
 function onChaynsReady() {
+    let $tappContent = document.querySelector('.tapp__content');
+
     newFavForm = new NewFavoritForm;
-    newFavForm.create(document.querySelector('.tapp__content'));
+    newFavForm.create($tappContent);
 
     displayForm = new DisplayForm;
-    displayForm.create(document.querySelector('.tapp__content'));
+    displayForm.create($tappContent);
 
     let search = new Search;
     search.create(displayForm.getHTML().querySelector('.accordion__head'), onSearch);
 
-    setLoadMoreCb(document.querySelector('#loadMore'), onLoadMoreClick);
+    setLoadMoreCb(displayForm.getHTML().querySelector('#loadMore'), onLoadMoreClick);
 };
 
 function onLoadMoreClick($Btn) {

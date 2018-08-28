@@ -32,18 +32,15 @@ export default class NewFavoritForm {
 
         $parent.appendChild(this.$html);
 
-        this.$name = document.querySelector('#name');
-        this.$facebookpage = document.querySelector('#facebookpage');
-        this.$address = document.querySelector('#address');
-        this.$email = document.querySelector('#email');
+        this.$name = this.$html.querySelector('#name');
+        this.$facebookpage = this.$html.querySelector('#facebookpage');
+        this.$address = this.$html.querySelector('#address');
+        this.$email = this.$html.querySelector('#email');
 
-        this.$sendBtn = document.querySelector('#sendFavoritData');
+        this.$sendBtn = this.$html.querySelector('#sendFavoritData');
         this.$sendBtn.addEventListener('click', () => {
             if (this.checkInput()) {
                 chayns.dialog.alert('', 'Deine Seite wurde hinzugefügt!');
-            }
-
-            else {
             }
         });
     };

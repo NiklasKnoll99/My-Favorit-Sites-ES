@@ -25,7 +25,7 @@ export default class DisplayForm {
 
         $parent.appendChild(this.$html);
 
-        this.$siteDisplay = document.querySelector('#siteDisplay');
+        this.$siteDisplay = this.$html.querySelector('#siteDisplay');
         this.itemList = [];
     };
 
