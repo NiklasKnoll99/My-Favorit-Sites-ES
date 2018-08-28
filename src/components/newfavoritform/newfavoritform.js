@@ -5,6 +5,7 @@ export default class NewFavoritForm {
     $facebookpage = null;
     $address = null;
     $email = null;
+    $sendBtn = null;
 
     create($parent) {
         $parent.appendChild(htmlToElement(`
@@ -28,26 +29,36 @@ export default class NewFavoritForm {
             </div>
         </div>`));
 
-        this.$name = document.querySelector('#name').innerHTML;
-        this.$facebookpage = document.querySelector('#facebookpage').innerHTML;
-        this.$address = document.querySelector('#address').innerHTML;
-        this.$email = document.querySelector('#email').innerHTML;
+        this.$name = document.querySelector('#name');
+        this.$facebookpage = document.querySelector('#facebookpage');
+        this.$address = document.querySelector('#address');
+        this.$email = document.querySelector('#email');
+
+        this.$sendBtn = document.querySelector('#sendFavoritData');
+        this.$sendBtn.addEventListener('click', () => {
+            if (this.checkInput()) {
+                chayns.dialog.alert('', 'Deine Seite wurde hinzugefügt!');
+            }
+
+            else {
+            }
+        });
     };
 
     checkInput() {
         let errors = [];
         let errString = null;
 
-        if (this.$name === '')
+        if (this.$name.value === '')
             errors.push('Name');
 
-        if (this.$facebookpage === '')
+        if (this.$facebookpage.value === '')
             errors.push('Facebookseite');
 
-        if (this.$address === '')
+        if (this.$address.value === '')
             errors.push('Adresse');
 
-        if (this.$email === '')
+        if (this.$email.value === '')
             errors.push('Email');
 
         if (errors.length === 1) {
@@ -66,7 +77,11 @@ export default class NewFavoritForm {
             }
         }
 
-        if (errString != null)
+        if (errString != null) {
             chayns.dialog.alert('Fehler', errString);
-        };
+            return false;
+        }
+
+        return true;
+    }
 }
