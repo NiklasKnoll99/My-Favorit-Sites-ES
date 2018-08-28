@@ -2,10 +2,10 @@
 import SERVER_URL from './constants/server-url';
 import Search from './components/search/search';
 import fetch from './utils/fetch';
-import List from './components/list/list';
 import ListItem from './components/listitem/listitem';
 import setLoadMoreCb from './utils/setloadmorecb';
-import checkInputs from './utils/checkInputs';
+import NewFavoritForm from './components/newfavoritform/newfavoritform';
+import DisplayForm from './components/displayform/displayform';
 
 const init = async () => {
     await chayns.ready;
@@ -17,13 +17,20 @@ init();
 let list = null;
 let filter = null;
 
+let newFavForm = null;
+let displayForm = null;
+
 let skip = 0;
 let take = 10;
 
 function onChaynsReady() {
-    let search = new Search(document.querySelector('#search'), onSearch);
+    newFavForm = new NewFavoritForm;
+    newFavForm.create(document.querySelector('.tapp__content'));
 
-    list = new List(document.querySelector('#siteDisplay'));
+    displayForm = new DisplayForm;
+    displayForm.create(document.querySelector('.tapp__content'));
+
+    let search = new Search(document.querySelector('#search'), onSearch);
 
     setLoadMoreCb(document.querySelector('#loadMore'), onLoadMoreClick);
 };
@@ -41,18 +48,18 @@ function onSearch(searchString) {
         fetch('https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=' + filter + '&Skip=' + skip + '&Take=' + take, onJsonLoad);
 
     else
-        list.clear();
+        displayForm.clear();
 };
 
 function onJsonLoad(jsonObjects) {
     if (skip === 0)
-        list.clear();
+        displayForm.clear();
 
     for (let i = 0; i < jsonObjects.length; i++) {
         let $siteItem = new ListItem(jsonObjects[i].appstoreName, jsonObjects[i].siteId, 'https://sub60.tobit.com/l/' + jsonObjects[i].siteId + '?size=45', 'https://chayns.net/' + jsonObjects[i].siteId + '/');
 
-        list.add($siteItem.getHTML());
+        displayForm.add($siteItem);
     }
 
-    list.print();
+    displayForm.print();
 };
