@@ -14,7 +14,6 @@ const init = async () => {
 
 init();
 
-let list = null;
 let filter = null;
 
 let newFavForm = null;

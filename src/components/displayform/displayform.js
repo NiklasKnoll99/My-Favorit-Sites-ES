@@ -18,26 +18,12 @@ export default class DisplayForm {
                 <br>
             </div>
             <div class="accordion__body">
-                <div class="accordion__content">
-                    <div style="width: 100%" id="siteDisplay">
-                        <!--<div class="siteItem">
-                            <a href="#">
-                                <div style="display: flex; align-items: center; padding: 8px 0px 8px 10px">
-                                    <img style="width: 45px; height: 45px" src="https://tapp01.tobit.com/content/design/Designguide/chayns_design_guide/chayns_icon.png">
-                                    <div style="padding-left: 8px">
-                                        <h4 style="line-height: 0.9em">Das ist ein Suchergebnis</h4>
-                                        <p style="line-height: 0.9em; font-size: 85%">Beschreibung</p>
-                                    </div>
-                                </div>
-                            <div style="height: 1px; background-color: #335360"></div>
-                            </a>
-                        </div>-->
-                    </div>
+                <div style="width: 100%" id="siteDisplay"></div>
+            </div>
 
-                    <div style="text-align: right; margin: 10px">
-                        <a id="loadMore" href="#">Mehr anzeigen</a>
-                    </div>
-                </div>
+        <div style="text-align: right; margin: 10px">
+            <a id="loadMore" href="#">Mehr anzeigen</a>
+        </div>
             </div>
         </div>`));
 
